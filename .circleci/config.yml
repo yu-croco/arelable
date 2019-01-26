@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
+        environment:
+          BUNDLE_PATH: .bundle
     steps:
       - checkout
       - restore_cache:
@@ -13,10 +15,10 @@ jobs:
           name: Install Dependencies
           working_directory: arelable
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bin/setup
       - save_cache:
           paths:
-            - ./vendor/bundle
+            - .bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: Run RSpec
