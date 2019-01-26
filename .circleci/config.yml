@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
-    working_directory: arelable
     steps:
       - checkout
       - restore_cache:
@@ -12,6 +11,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install Dependencies
+          working_directory: arelable
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
@@ -20,16 +20,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: Run RSpec
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
+          working_directory: arelable
+          command: bin/rspec
       - store_test_results:
           path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
