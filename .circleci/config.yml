@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run:
+          # ref: https://github.com/bundler/bundler/issues/6784
           name: Configure Bundler
           command: |
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
