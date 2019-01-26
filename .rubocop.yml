@@ -1,0 +1,8 @@
+AllCops:
+  Include:
+    - lib/*
+  TargetRubyVersion: 2.5.0
+Style/StringLiterals:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
