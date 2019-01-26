@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
-    working_directory: areable
+    working_directory: arelable
     steps:
       - checkout
       - restore_cache:
