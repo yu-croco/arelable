@@ -5,6 +5,7 @@ jobs:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
           BUNDLE_PATH: .bundle
+          BUNDLER_VERSION: 2.0.1
     working_directory: ~/areable
     steps:
       - checkout
