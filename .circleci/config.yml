@@ -5,10 +5,15 @@ jobs:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
           BUNDLE_PATH: .bundle
-          BUNDLER_VERSION: 2.0.1
     working_directory: ~/areable
     steps:
       - checkout
+      - run:
+        name: Configure Bundler
+        command: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
