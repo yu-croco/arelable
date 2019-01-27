@@ -5,6 +5,11 @@ jobs:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
           BUNDLE_PATH: .bundle
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_DATABASE: areable_test
+          MYSQL_PASSWORD: ''
+          MYSQL_USER: root
     working_directory: ~/areable
     steps:
       - checkout
