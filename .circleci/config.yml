@@ -32,6 +32,9 @@ jobs:
             - .bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
+         name: Wait for db
+         command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
           name: Run RSpec
           command: |
             mkdir /tmp/test-results
