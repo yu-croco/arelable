@@ -5,6 +5,13 @@ jobs:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
           BUNDLE_PATH: .bundle
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          DB_HOST: 127.0.0.1
+          MYSQL_DATABASE: areable_test
+          MYSQL_PASSWORD: ''
+          MYSQL_USER: root
     working_directory: ~/areable
     steps:
       - checkout
@@ -27,12 +34,13 @@ jobs:
             - .bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
+         name: Wait for db
+         command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
           name: Run RSpec
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec --format progress \
-                            $TEST_FILES
+            bin/rspec
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:

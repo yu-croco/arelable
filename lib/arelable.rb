@@ -1,6 +1,7 @@
+require "active_record"
 require "arelable/version"
 
 module Arelable
-  class Error < StandardError; end
-  # Your code goes here...
+  def areable
+  end
 end

@@ -1,5 +1,6 @@
+require "spec_helper"
+
 RSpec.describe Arelable do
-  it "has a version number" do
-    expect(Arelable::VERSION).not_to be nil
+  it "no content" do
   end
 end
