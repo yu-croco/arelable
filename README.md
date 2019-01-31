@@ -61,7 +61,7 @@ User.bw(:age, [35, 40])
 
 ### matches
 ```ruby
-User.bw(:name, "Bo")
+User.matches(:name, "Bo")
 # => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE '%Bo%')
 ```
 
