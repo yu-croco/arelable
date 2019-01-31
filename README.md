@@ -28,6 +28,14 @@ Or install it yourself as:
 
 ## Usage
 
+You need to include Arelable in your target Model like below.
+
+```ruby
+class User < ActiveRecord::Base
+  include Arelable
+end
+```
+
 ### gt
 
 ```ruby
