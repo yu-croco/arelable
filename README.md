@@ -1,8 +1,14 @@
 # Arelable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/arelable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to Arelable gem!
 
-TODO: Delete this and the text above, and describe your gem
+You are thinking that it is not cool to write raw SQL in Rails, aren't you?
+
+Then just use this gem.
+Arelable is a simple SQL wrappers for Rails to help you not to write raw SQL, like Arel.
+
+*Arel is not recommended to be used in your application logics because it is private method of Rails.
+
 
 ## Installation
 
@@ -22,7 +28,42 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### gt
+
+```ruby
+User.gt(:age, 35)
+# => SELECT COUNT(*) FROM `users` WHERE (age > 35)
+```
+
+### gteq
+```ruby
+User.geteq(:age, 35)
+# => SELECT COUNT(*) FROM `users` WHERE (age >= 35)
+```
+
+### lt
+```ruby
+User.lt(:age, 35)
+# => SELECT COUNT(*) FROM `users` WHERE (age < 35)
+```
+
+### lteq
+```ruby
+User.lteq(:age, 35)
+# => SELECT COUNT(*) FROM `users` WHERE (age <= 35)
+```
+
+### bw
+```ruby
+User.bw(:age, [35, 40])
+# => SELECT COUNT(*) FROM `users` WHERE (age BETWEEN 35 AND 40)
+```
+
+### matches
+```ruby
+User.bw(:name, "Bo")
+# => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE '%Bo%')
+```
 
 ## Development
 
