@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Arelable do
-  describe '#bw' do
+  describe '.bw' do
     before(:all) do
       User.create(first_name: "Taro", last_name: "Yamada", age: 35)
     end
