@@ -28,13 +28,9 @@ Or install it yourself as:
 
 ## Usage
 
-You need to include Arelable in your target Model like below.
+All you have to do is install this RubyGem!
+Then you can use the following feature.
 
-```ruby
-class User < ActiveRecord::Base
-  include Arelable
-end
-```
 
 ### gt
 
@@ -69,8 +65,14 @@ User.bw(:age, [35, 40])
 
 ### matches
 ```ruby
-User.matches(:name, "Bo")
-# => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE '%Bo%')
+User.all_matches(:name, "o")
+# => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE '%o%')
+
+User.forward_matches(:name, "Bo")
+# => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE 'Bo%')
+
+User.backward_matches(:name, "ob")
+# => SELECT COUNT(*) FROM `users` WHERE (first_name LIKE 'ob%')
 ```
 
 ## Development
